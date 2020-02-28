@@ -1,12 +1,11 @@
 let myLibrary = [];
 
 class Book {
-    constructor(title, author, pubDate, owned="true", read="false") {
+    constructor(title, author, pubDate, status="owned") {
         self.title = title;
         self.author = author;
         self.pubDate = pubDate;
-        self.owned = owned;
-        self.read = read;
+        self.status = status;
     }
 }
 
