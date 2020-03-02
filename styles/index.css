@@ -47,12 +47,17 @@
 
 
 
-/* BASIC ELEMENTS */
+/* PAGE ELEMENTS */
 
 body {
     font-size: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+
+
+/* HEADER */
 
 header, .library, .book {
     padding: 1em;
@@ -67,6 +72,11 @@ header {
 header h1 {
     margin-bottom: .15em;
 }
+
+
+
+
+/* LIBRARY */
 
 .library {
     display: flex;
