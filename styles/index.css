@@ -79,6 +79,7 @@ header h1 {
 /* LIBRARY */
 
 .library {
+    background-color: lightsteelblue;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -92,30 +93,12 @@ header h1 {
 
 .book {
     background-color: lightcoral;
-    border-radius: 1em;
+    border-radius: .5em;
     flex: 0 0 0;
     min-width: 12em;
     margin: 0 .5em 1em .5em;
     position: relative;
-}
-
-.book:before, .book:after {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    left: 10px;
-    width: 45%;
-    top: 80%;
-    max-width:300px;
-    box-shadow: 0 15px 20px #777;
-    transform: rotate(-6deg);
-}
-
-.book:after {
-    transform: rotate(6deg);
-    right: 10px;
-    left: auto;
+    box-shadow: 0 7px 10px #777;
 }
 
 .book h2 {
