@@ -64,8 +64,11 @@ header {
     background-color: lightgray;
 }
 
+header h1 {
+    margin-bottom: .15em;
+}
+
 .library {
-    background-color: lightblue;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -79,6 +82,26 @@ header {
     min-width: 12em;
     height: 15em;
     margin: 0 .5em 1em .5em;
+    position: relative;
+}
+
+.book:before, .book:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 45%;
+    top: 80%;
+    max-width:300px;
+    box-shadow: 0 15px 20px #777;
+    transform: rotate(-6deg);
+}
+
+.book:after {
+    transform: rotate(6deg);
+    right: 10px;
+    left: auto;
 }
 
 hr {
@@ -90,10 +113,6 @@ hr {
 
 
 /* HEADINGS */
-
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: .1em;
-}
 
 h1 {
     font-size: 4em;
