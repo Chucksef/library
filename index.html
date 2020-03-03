@@ -24,6 +24,27 @@
                 <p class="label">Status:</p>
                 <p class="detail">Read</p>
             </div><!-- book -->
+            <div class="book">
+                <form>
+                    <label for="book_title">Title:</label><br>
+                    <input type="text" id="book_title" name="book_title" value="Name"><br>
+                    <hr>
+                    <label for="book_author">Author:</label><br>
+                    <input type="text" id="book_author" name="book_author" value="Name"><br>
+
+                    <label for="book_published">Publish Date:</label><br>
+                    <input type="text" id="book_published" name="book_published" value="Name"><br>
+
+                    <input type="radio" id="read" name="status" value="read">
+                    <label for="status_read">Read</label><br>
+
+                    <input type="radio" id="unread" name="status" value="unread">
+                    <label for="status_unread">Unread</label><br>
+
+                    <input type="radio" id="wishlist" name="status" value="wishlist">
+                    <label for="status_wishlist">Wishlist</label>
+                </form>
+            </div><!-- book -->
         
             <button class="book" id="add_book">
                 <i class="material-icons">add</i>
