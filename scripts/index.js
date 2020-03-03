@@ -1,6 +1,7 @@
 var myLibrary = [];
 document.querySelector("#add_book").addEventListener("click", addBookToLibrary);
 let library = document.querySelector("#library");
+let add_book = document.querySelector("#add_book");
 
 class Book {
   constructor(title, author, pubDate, status="unread", color=generateColor) {
@@ -13,7 +14,16 @@ class Book {
 }
 
 function addBookToLibrary() {
-  // generate new book html in a form
+  add_book.insertAdjacentHTML("beforebegin", "<div class=\"book\">\
+                                                <h2>Generic Book</h2>\
+                                                <hr>\
+                                                <p class=\"label\">Author</p>\
+                                                <p class=\"detail\">Joey Wroteabook</p>\
+                                                <p class=\"label\">Published:</p>\
+                                                <p class=\"detail\">Jan 1 1975</p>\
+                                                <p class=\"label\">Status:</p>\
+                                                <p class=\"detail\">Read</p>\
+                                              </div>")
 }
 
 function saveBook() {
