@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
     <title>Practice</title>
-    <script src="scripts/index.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="styles/index.css">
     <meta charset="UTF-8">
@@ -10,13 +9,13 @@
     <header>
         <h1>Your Library</h1>
         <h3>A Place to Store All Your Books</h3s>
-    </header>
-
-    <div class="library">
-
-        <div class="book">
-            <h2>Generic Book</h2>
-            <hr>
+        </header>
+        
+        <div class="library" id="library">
+            
+            <div class="book">
+                <h2>Generic Book</h2>
+                <hr>
             <p class="label">Author</p>
             <p class="detail">Joey Wroteabook</p>
             <p class="label">Published:</p>
@@ -24,12 +23,13 @@
             <p class="label">Status:</p>
             <p class="detail">Read</p>
         </div><!-- book -->
-
+        
         <button class="book" id="add_book">
             <i class="material-icons">add</i>
             <p>Add Book</p>
         </button>
-
+        
         
     </div><!-- library -->
+    <script src="scripts/index.js"></script>
 </body>
