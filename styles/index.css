@@ -246,3 +246,13 @@ form span {
 div.form-radios {
     
 }
+
+
+
+
+/* ICONS */
+
+i.material-icons {
+    position: relative;
+    top: 1px;
+}
