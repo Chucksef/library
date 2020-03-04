@@ -28,19 +28,31 @@ class Book {
 		let tmp_author = this.author.replace(" ", "");
 		let tmp_date = this.date.replace(" ", "");
 
+		// Do nothing if any form fields are blank...
 		if (tmp_title == "" || tmp_author == "" || tmp_date == "" ){
 			alert("Book fields cannot be blank!");
+			form_title.focus();
 		} else {
 			myLibrary.push(this);
+			book_form.style.display = "none";
+			add_button.style.display = "block";
+
+			loadBooks();
+			resetForm();
 		}
 	}
 }
 
 function loadBooks() {
+
+	// clear all visible books in the library
+	clearBooks();
+
+	// iterate over myLibrary array...
 	for (i=0; i<myLibrary.length; i++){
 		current_book = myLibrary[i];
 		
-		// draw each book
+		// ... and draw each book in the array
 		book_form.insertAdjacentHTML("beforebegin", `
 			<div class="book removable" style="background-color: ${current_book.color};">
 				<h2>${current_book.title}</h2>
@@ -80,7 +92,7 @@ function showBookForm() {
 	}
 }
 
-function clearForm() {
+function resetForm() {
 	document.querySelector("#form").reset();
 	document.querySelector("#unread").checked = true;
 }
@@ -88,7 +100,7 @@ function clearForm() {
 function cancelSave() {
 	book_form.style.display = "none";
 	add_button.style.display = "block";
-	clearForm();
+	resetForm();
 }
 
 function saveBook() {
@@ -109,14 +121,6 @@ function saveBook() {
 	// create and save a new Book object
 	const book = new Book(form_title.value, form_author.value, form_date.value, new_status, new_color);
 	book.save();
-
-	// hide/show relevant elements
-	book_form.style.display = "none";
-	add_button.style.display = "block";
-
-	clearBooks();
-	loadBooks();
-	clearForm();
 }
 
 function generateColor() {
