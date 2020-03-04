@@ -2,6 +2,7 @@
 var myLibrary = [];
 document.querySelector("#add-book").addEventListener("click", showBookForm);
 document.querySelector("#save-book").addEventListener("click", saveBook);
+document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 let library = document.querySelector("#library");
 let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
@@ -70,6 +71,12 @@ function showBookForm() {
 function clearForm() {
 	document.querySelector("#form").reset();
 	document.querySelector("#unread").checked = true;
+}
+
+function cancelSave() {
+	book_form.style.display = "none";
+	add_button.style.display = "block";
+	clearForm();
 }
 
 function saveBook() {
