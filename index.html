@@ -10,60 +10,53 @@
         <h1>Your Library</h1>
         <h3>A Place to Store All Your Books</h3>
         <p class="materials-icons" style="display: none">add</p>
-        </header>
+    </header>
         
-        <div class="library" id="library">
-            
-            <div class="book">
-                <h2>Generic Book</h2>
-                <hr>
-                <p class="label">Author</p>
-                <p class="detail">Joey Wroteabook</p>
-                <p class="label">Year:</p>
-                <p class="detail">Jan 1 1975</p>
-                <p class="label">Status:</p>
-                <p class="detail">Read</p>
-            </div><!-- book -->
+    <div class="library" id="library">
 
-            <div class="book" id="book-form" style="display: none;">
-				<form>
-					<label for="book-title">Title:</label>
-					<input class="form-element" type="text" id="book-title" name="book-title" value="Title">
-					<label for="book-author">Author:</label>
-					<input class="form-element" type="text" id="book-author" name="book-author" value="Author">
-					<label for="book-published">Publish Year:</label>
-					<input class="form-element" type="text" id="book-published" name="book-published" value="Date">
-					<div class="columns">
-						<div class="col form-radios">
-							<span>
-								<input checked="true" class="form-element" type="radio" id="read" name="book-status" value="read">
-								<label for="status-read">Read</label>
-							</span>
-							<span>
-								<input class="form-element" type="radio" id="unread" name="book-status" value="unread">
-								<label for="status-unread">Unread</label>
-							</span>
-							<span>
-								<input class="form-element" type="radio" id="wishlist" name="book-status" value="wishlist">
-								<label for="status-wishlist">Wishlist</label>
-							</span>
-						</div>
-					</div>
-				</form>
-                <div class="col form-buttons">
-                    <button class="form-button" id="save-book">
-                        <i class="material-icons">check</i>
-                    </button>
-                    <button class="form-button" id="remove-book">
-                        <i class="material-icons">block</i>
-                    </button>
+        <div class="book" id="book-form" style="display: none;">
+            <form>
+                <label for="book-title">Title:</label>
+                <input class="form-element" type="text" id="book-title" name="book-title" value="Title">
+                <label for="book-author">Author:</label>
+                <input class="form-element" type="text" id="book-author" name="book-author" value="Author">
+                <label for="book-published">Publish Year:</label>
+                <input class="form-element" type="text" id="book-published" name="book-published" value="Date">
+                <div class="columns">
+                    <div class="col form-radios">
+                        <span>
+                            <input checked="true" class="form-element" type="radio" id="read" name="book-status" value="read">
+                            <label for="status-read">Read</label>
+                        </span>
+                        <span>
+                            <input class="form-element" type="radio" id="unread" name="book-status" value="unread">
+                            <label for="status-unread">Unread</label>
+                        </span>
+                        <span>
+                            <input class="form-element" type="radio" id="wishlist" name="book-status" value="wishlist">
+                            <label for="status-wishlist">Wishlist</label>
+                        </span>
+                    </div>
                 </div>
-			</div>
-        
-            <button class="book" id="add-book">
-                <i id="add-book-button" class="material-icons">add</i>
-                <p>Add Book</p>
-            </button>
-        </div><!-- library -->
+            </form>
+
+            <div class="col form-buttons">
+                <button class="form-button" id="save-book">
+                    <i class="material-icons">check</i>
+                </button>
+                <button class="form-button" id="remove-book">
+                    <i class="material-icons">block</i>
+                </button>
+            </div>
+            
+        </div><!-- BOOK FORM -->
+    
+        <button class="book" id="add-book">
+            <i id="add-book-button" class="material-icons">add</i>
+            <p>Add Book</p>
+        </button>
+
+    </div><!-- LIBRARY -->
+
     <script src="scripts/index.js"></script>
 </body>

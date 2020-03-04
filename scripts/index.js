@@ -18,16 +18,33 @@ class Book {
 function loadBooks() {
 	for (i=0; i<myLibrary.length; i++){
 		current_book = myLibrary[i];
-
+		
+		// draw each book
+		book_form.insertAdjacentHTML("beforebegin", `
+			<div class="book removable" style="background-color: ${current_book.color};">
+				<h2>${current_book.title}</h2>
+				<hr>
+				<p class="label">Author</p>
+				<p class="detail">${current_book.author}</p>
+				<p class="label">Year:</p>
+				<p class="detail">${current_book.published}</p>
+				<p class="label">Status:</p>
+				<p class="detail">${current_book.status}</p>
+			</div>
+		`)
 	}
 }
 
 function clearBooks() {
+	let removables = document.querySelectorAll(".removable");
+	removables.forEach(function(book){
+		removeBook(book);
+	})
 
 }
 
-function removeBook() {
-
+function removeBook(book) {
+	library.removeChild(book);
 }
 
 function showBookForm() {
@@ -49,7 +66,7 @@ function saveBook() {
 	let new_author = document.querySelector("#book-author").value;
 	let new_published = document.querySelector("#book-published").value;
 
-	//get selected radio button value
+	// get selected radio button value
 	let radios = document.getElementsByName("book-status");
 	for (let i = 0; i < radios.length; i++){
 		if(radios[i].checked){
@@ -63,14 +80,16 @@ function saveBook() {
 	let new_style = getComputedStyle(new_book);
 	let new_color = new_style.backgroundColor;
 
-	//create a new Book object
+	// create a new Book object
 	const book = new Book(new_title, new_author, new_published, new_status, new_color);
 	myLibrary.push(book)
 
+	// hide/show relevant elements
 	book_form.style.display = "none";
 	add_button.style.display = "block";
 
-
+	clearBooks();
+	loadBooks();
 }
 
 function generateColor() {
