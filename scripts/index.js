@@ -2,7 +2,7 @@ var myLibrary = [];
 document.querySelector("#add-book").addEventListener("click", showBookForm);
 document.querySelector("#save-book").addEventListener("click", saveBook);
 let library = document.querySelector("#library");
-let add_book = document.querySelector("#add-book");
+let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
 
 class Book {
@@ -35,8 +35,9 @@ function showBookForm() {
 		alert("there's a new book");
 	} else {
 		new_color = generateColor();
-		
+		book_form.style.backgroundColor = new_color;
 		book_form.style.display = "block";
+		add_button.style.display = "none";
 	}
 }
 
@@ -67,6 +68,7 @@ function saveBook() {
 	myLibrary.push(book)
 
 	book_form.style.display = "none";
+	add_button.style.display = "block";
 
 
 }
