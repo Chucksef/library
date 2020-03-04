@@ -125,6 +125,7 @@ header h1 {
 
 .book p.detail {
     text-align: left;
+    color: white;
 }
 
 .book p.detail:after {
@@ -168,7 +169,6 @@ h4 {
     border: none;
     opacity: .75;
     box-shadow: none;
-    min-height: 248px;
 }
 
 #add-book-button {
@@ -214,7 +214,7 @@ input.form-element {
     background: none;
     border: none;
     border-bottom: solid 1px rgba(255, 255, 255, .25);
-    color: black;
+    color: white;
     margin-bottom: .5em;
     font-size: 1em;
 }
@@ -238,7 +238,7 @@ span label {
     display: inline;
 }
 
-form span {
+span {
     display: block;
     text-align: left;
 }

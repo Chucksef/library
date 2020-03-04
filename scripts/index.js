@@ -1,9 +1,17 @@
+// global variables go here
 var myLibrary = [];
 document.querySelector("#add-book").addEventListener("click", showBookForm);
 document.querySelector("#save-book").addEventListener("click", saveBook);
 let library = document.querySelector("#library");
 let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
+let form_title = document.querySelector("#book-title");
+let form_author = document.querySelector("#book-author");
+let form_published = document.querySelector("#book-published");
+let form_radios = document.getElementsByName("book-status");
+
+
+// CLASSES
 
 class Book {
 	constructor(title, author, published, status, color=generateColor()) {
@@ -55,22 +63,21 @@ function showBookForm() {
 		book_form.style.backgroundColor = new_color;
 		book_form.style.display = "block";
 		add_button.style.display = "none";
+		form_title.focus();
 	}
+}
+
+function clearForm() {
+	document.querySelector("#form").reset();
+	document.querySelector("#unread").checked = true;
 }
 
 function saveBook() {
 
-	// get values of form elements
-	let book_form = document.querySelector("#book-form");
-	let new_title = document.querySelector("#book-title").value;
-	let new_author = document.querySelector("#book-author").value;
-	let new_published = document.querySelector("#book-published").value;
-
 	// get selected radio button value
-	let radios = document.getElementsByName("book-status");
-	for (let i = 0; i < radios.length; i++){
-		if(radios[i].checked){
-			var new_status = radios[i].value;
+	for (let i = 0; i < form_radios.length; i++){
+		if(form_radios[i].checked){
+			var new_status = form_radios[i].value;
 			break;
 		}
 	}
@@ -81,7 +88,7 @@ function saveBook() {
 	let new_color = new_style.backgroundColor;
 
 	// create a new Book object
-	const book = new Book(new_title, new_author, new_published, new_status, new_color);
+	const book = new Book(form_title.value, form_author.value, form_published.value, new_status, new_color);
 	myLibrary.push(book)
 
 	// hide/show relevant elements
@@ -90,6 +97,7 @@ function saveBook() {
 
 	clearBooks();
 	loadBooks();
+	clearForm();
 }
 
 function generateColor() {

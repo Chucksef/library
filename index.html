@@ -15,40 +15,41 @@
     <div class="library" id="library">
 
         <div class="book" id="book-form" style="display: none;">
-            <form>
+            <form id="form">
                 <label for="book-title">Title:</label>
-                <input class="form-element" type="text" id="book-title" name="book-title" value="Title">
+                <input class="form-element" type="text" id="book-title" name="book-title" value="">
                 <label for="book-author">Author:</label>
-                <input class="form-element" type="text" id="book-author" name="book-author" value="Author">
+                <input class="form-element" type="text" id="book-author" name="book-author" value="">
                 <label for="book-published">Publish Year:</label>
-                <input class="form-element" type="text" id="book-published" name="book-published" value="Date">
-                <div class="columns">
-                    <div class="col form-radios">
-                        <span>
-                            <input checked="true" class="form-element" type="radio" id="read" name="book-status" value="read">
-                            <label for="status-read">Read</label>
-                        </span>
-                        <span>
-                            <input class="form-element" type="radio" id="unread" name="book-status" value="unread">
-                            <label for="status-unread">Unread</label>
-                        </span>
-                        <span>
-                            <input class="form-element" type="radio" id="wishlist" name="book-status" value="wishlist">
-                            <label for="status-wishlist">Wishlist</label>
-                        </span>
-                    </div>
-                </div>
+                <input class="form-element" type="text" id="book-published" name="book-published" value="">
             </form>
+            <div class="columns">
+                <div class="col form-radios">
+                    <span>
+                        <input checked="true" class="form-element" type="radio" id="read" name="book-status" value="Read">
+                        <label for="status-read">Read</label>
+                    </span>
+                    <span>
+                        <input class="form-element" type="radio" id="unread" name="book-status" value="Unread">
+                        <label for="status-unread">Unread</label>
+                    </span>
+                    <span>
+                        <input class="form-element" type="radio" id="wishlist" name="book-status" value="Wishlist">
+                        <label for="status-wishlist">Wishlist</label>
+                    </span>
+                </div><!-- FORM RADIOS -->
 
-            <div class="col form-buttons">
-                <button class="form-button" id="save-book">
-                    <i class="material-icons">check</i>
-                </button>
-                <button class="form-button" id="remove-book">
-                    <i class="material-icons">block</i>
-                </button>
-            </div>
-            
+                <div class="col form-buttons">
+                    <button class="form-button" id="save-book">
+                        <i class="material-icons">check</i>
+                    </button>
+                    <button class="form-button" id="remove-book">
+                        <i class="material-icons">block</i>
+                    </button>
+                </div><!-- FORM BUTTONS -->
+                
+            </div><!-- COLUMNS -->
+
         </div><!-- BOOK FORM -->
     
         <button class="book" id="add-book">
