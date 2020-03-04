@@ -29,13 +29,13 @@ function removeBook() {
 }
 
 function addBookToLibrary() {
-	new_book = document.querySelector("#new-book")
+	new_book = document.querySelector("#book-form")
 	if(new_book) {
 		console.log("there's a new book");
 	} else {
 		new_color = generateColor();
 		new_book = add_book.insertAdjacentHTML("beforebegin", `\
-			<div class=\"book\" id=\"new-book\" style=\"background-color: ${new_color}\">\
+			<div class=\"book\" id=\"book-form\" style=\"background-color: ${new_color}\">\
 				<form>\
 					<label for=\"book-title\">Title:</label>\
 					<input class=\"form-element\" type=\"text\" id=\"book-title\" name=\"book-title\" value=\"Title\">\
@@ -77,6 +77,7 @@ function addBookToLibrary() {
 function saveBook() {
 
 	// get values of form elements
+	let book_form = document.querySelector("#book-form");
 	let new_title = document.querySelector("#book-title").value;
 	let new_author = document.querySelector("#book-author").value;
 	let new_published = document.querySelector("#book-published").value;
@@ -91,13 +92,17 @@ function saveBook() {
 	}
 	
 	// get computed style of new book
-	let new_book = document.querySelector("#new-book");
+	let new_book = document.querySelector("#book-form");
 	let new_style = getComputedStyle(new_book);
 	let new_color = new_style.backgroundColor;
 
 	//create a new Book object
 	const book = new Book(new_title, new_author, new_published, new_status, new_color);
 	myLibrary.push(book)
+
+	book_form.style.display = "none";
+
+
 }
 
 function generateColor() {
