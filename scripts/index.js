@@ -1,3 +1,17 @@
+// TO DO 
+/*
+
+    * Create/Hide Book Operators on hover
+        * Destroy Book Button
+	    * Mark Book Read Button
+	* Persistence (local? firebase?)
+	* Make Look Prettier
+	* Shrink Book Titles to available space
+
+*/
+
+
+
 // global variables go here
 var myLibrary = [];
 document.querySelector("#add-book").addEventListener("click", showBookForm);
@@ -37,13 +51,13 @@ class Book {
 			book_form.style.display = "none";
 			add_button.style.display = "block";
 
-			loadBooks();
+			drawBooks();
 			resetForm();
 		}
 	}
 }
 
-function loadBooks() {
+function drawBooks() {
 
 	// clear all visible books in the library
 	clearBooks();
