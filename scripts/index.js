@@ -8,19 +8,31 @@ let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
 let form_title = document.querySelector("#book-title");
 let form_author = document.querySelector("#book-author");
-let form_published = document.querySelector("#book-published");
+let form_date = document.querySelector("#book-date");
 let form_radios = document.getElementsByName("book-status");
 
 
 // CLASSES
 
 class Book {
-	constructor(title, author, published, status, color=generateColor()) {
+	constructor(title, author, date, status, color=generateColor()) {
 		this.title = title;
 		this.author = author;
-		this.published = published;
+		this.date = date;
 		this.status = status;
 		this.color = color;
+	}
+
+	save() {
+		let tmp_title = this.title.replace(" ", "");
+		let tmp_author = this.author.replace(" ", "");
+		let tmp_date = this.date.replace(" ", "");
+
+		if (tmp_title == "" || tmp_author == "" || tmp_date == "" ){
+			alert("Book fields cannot be blank!");
+		} else {
+			myLibrary.push(this);
+		}
 	}
 }
 
@@ -36,7 +48,7 @@ function loadBooks() {
 				<p class="label">Author</p>
 				<p class="detail">${current_book.author}</p>
 				<p class="label">Year:</p>
-				<p class="detail">${current_book.published}</p>
+				<p class="detail">${current_book.date}</p>
 				<p class="label">Status:</p>
 				<p class="detail">${current_book.status}</p>
 			</div>
@@ -94,9 +106,9 @@ function saveBook() {
 	let new_style = getComputedStyle(new_book);
 	let new_color = new_style.backgroundColor;
 
-	// create a new Book object
-	const book = new Book(form_title.value, form_author.value, form_published.value, new_status, new_color);
-	myLibrary.push(book)
+	// create and save a new Book object
+	const book = new Book(form_title.value, form_author.value, form_date.value, new_status, new_color);
+	book.save();
 
 	// hide/show relevant elements
 	book_form.style.display = "none";
