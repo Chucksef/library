@@ -4,13 +4,28 @@ let library = document.querySelector("#library");
 let add_book = document.querySelector("#add-book");
 
 class Book {
-	constructor(title, author, pubDate, status, color=generateColor) {
-		self.title = title;
-		self.author = author;
-		self.pubDate = pubDate;
-		self.status = status;
-		self.color = color;
+	constructor(title, author, published, status, color=generateColor()) {
+		this.title = title;
+		this.author = author;
+		this.published = published;
+		this.status = status;
+		this.color = color;
 	}
+}
+
+function loadBooks() {
+	for (i=0; i<myLibrary.length; i++){
+		current_book = myLibrary[i];
+
+	}
+}
+
+function clearBooks() {
+
+}
+
+function removeBook() {
+
 }
 
 function addBookToLibrary() {
@@ -31,15 +46,15 @@ function addBookToLibrary() {
 					<div class=\"columns\">\
 						<div class=\"col form-radios\">\
 							<span>\
-								<input class=\"form-element\" type=\"radio\" id=\"read\" name=\"status\" value=\"read\">\
+								<input checked=\"true\" class=\"form-element\" type=\"radio\" id=\"read\" name=\"book-status\" value=\"read\">\
 								<label for=\"status-read\">Read</label>\
 							</span>\
 							<span>\
-								<input class=\"form-element\" type=\"radio\" id=\"unread\" name=\"status\" value=\"unread\">\
+								<input class=\"form-element\" type=\"radio\" id=\"unread\" name=\"book-status\" value=\"unread\">\
 								<label for=\"status-unread\">Unread</label>\
 							</span>\
 							<span>\
-								<input class=\"form-element\" type=\"radio\" id=\"wishlist\" name=\"status\" value=\"wishlist\">\
+								<input class=\"form-element\" type=\"radio\" id=\"wishlist\" name=\"book-status\" value=\"wishlist\">\
 								<label for=\"status-wishlist\">Wishlist</label>\
 							</span>\
 						</div>\
@@ -60,18 +75,29 @@ function addBookToLibrary() {
 }
 
 function saveBook() {
-	// convert form book to 'real' book
-	new_title = document.querySelector("#book-title").value;
-	new_author = document.querySelector("#book-author").value;
-	new_published = document.querySelector("#book-published").value;
-	// new_status = document.querySelector("#book-status").value;
+
+	// get values of form elements
+	let new_title = document.querySelector("#book-title").value;
+	let new_author = document.querySelector("#book-author").value;
+	let new_published = document.querySelector("#book-published").value;
+
+	//get selected radio button value
+	let radios = document.getElementsByName("book-status");
+	for (let i = 0; i < radios.length; i++){
+		if(radios[i].checked){
+			var new_status = radios[i].value;
+			break;
+		}
+	}
 	
 	// get computed style of new book
-	new_book = document.querySelector("#new-book");
-	new_style = getComputedStyle(new_book);
-	new_color = new_style.backgroundColor;
+	let new_book = document.querySelector("#new-book");
+	let new_style = getComputedStyle(new_book);
+	let new_color = new_style.backgroundColor;
 
-	new_book.style.backgroundColor = generateColor();
+	//create a new Book object
+	const book = new Book(new_title, new_author, new_published, new_status, new_color);
+	myLibrary.push(book)
 }
 
 function generateColor() {
@@ -81,5 +107,4 @@ function generateColor() {
 	let b = (Math.floor(Math.random() * 100))+75;
 
 	return `rgb(${r}, ${g}, ${b})`
-
 }

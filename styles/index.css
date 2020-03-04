@@ -93,7 +93,7 @@ header h1 {
 /* BOOKS */
 
 .book {
-    background-color: lightcoral;
+    background-color: gray;
     border-radius: .5em;
     flex: 0 0 0;
     min-width: 12em;
