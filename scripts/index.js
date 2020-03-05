@@ -59,7 +59,6 @@ class Book {
 	}
 }
 
-
 // FUNCTIONS //
 
 function loadLibrary() {
@@ -88,6 +87,30 @@ function drawBooks() {
 				<p class="detail">${current_book.status}</p>
 			</div>
 		`)
+	}
+
+	// query for all .removable elements and assign them on-hover event listeners
+	books = document.querySelectorAll(".removable");
+	books.forEach(function(book) {
+		book.addEventListener("mouseenter", function(e){
+			toggleTools(e.target);
+		});
+		book.addEventListener("mouseleave", function(e){
+			toggleTools(e.target);
+		});
+	})
+
+}
+
+function toggleTools(book) {
+	let class_name = book.className;
+	alert(class_name);
+	if (class_name.includes("tools-visible")) {
+		// hide tools by removing tools-visible class
+		book.className = class_name.replace(" tools-visible", "");
+	} else {
+		// show tools by adding tools-visible class
+		book.className = `${class_name} tools-visible`;
 	}
 }
 
