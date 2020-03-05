@@ -85,6 +85,10 @@ function drawBooks() {
 				<p class="detail">${current_book.date}</p>
 				<p class="label">Status:</p>
 				<p class="detail">${current_book.status}</p>
+				<div class="tools">
+					<button class="btn read-book">Read!</button>
+					<button class="btn remove-book">Remove</button>
+				</div>
 			</div>
 		`)
 	}
@@ -104,7 +108,6 @@ function drawBooks() {
 
 function toggleTools(book) {
 	let class_name = book.className;
-	alert(class_name);
 	if (class_name.includes("tools-visible")) {
 		// hide tools by removing tools-visible class
 		book.className = class_name.replace(" tools-visible", "");
@@ -119,7 +122,6 @@ function clearBooks() {
 	removables.forEach(function(book){
 		removeBook(book);
 	})
-
 }
 
 function removeBook(book) {

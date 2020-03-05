@@ -193,6 +193,30 @@ h4 {
     flex: 1;
 }
 
+.tools {
+    display: none;
+}
+
+.tools-visible .tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    background: none;
+    border-radius: 3px;
+    border: 1px solid white;
+    width: 45%;
+    padding: 5px;
+    margin-top: 1em;
+    color: white;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+
 
 
 
