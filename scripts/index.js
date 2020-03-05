@@ -29,9 +29,9 @@ document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 
 class Book {
 	constructor(title, author, date, status, color=generateColor()) {
-		this.title = title;
-		this.author = author;
-		this.date = date;
+		this.title = title.trim();
+		this.author = author.trim();
+		this.date = date.trim();
 		this.status = status;
 		this.color = color;
 	}
@@ -40,18 +40,39 @@ class Book {
 		let tmp_title = this.title.replace(" ", "");
 		let tmp_author = this.author.replace(" ", "");
 		let tmp_date = this.date.replace(" ", "");
+		let save_errors = [];
 
 		// Do nothing if any form fields are blank...
-		if (tmp_title == "" || tmp_author == "" || tmp_date == ""){
-			alert("Book fields cannot be blank!");
-			form_title.focus();
-		} else {
+		if (tmp_title == "") {
+			save_errors.push("Title cannot be blank!");
+		}
+		
+		if (tmp_author == "") {
+			save_errors.push("Author cannot be blank");
+		}
+
+		if (tmp_date == "") {
+			save_errors.push("Date cannot be blank");
+		}
+
+		if (findInLibrary(this.title)!=-1) {
+			save_errors.push(`Book with title "${this.title}" already in library!`)
+		}
+
+		if (save_errors.length == 0) {
 			myLibrary.push(this);
 			book_form.style.display = "none";
 			add_button.style.display = "block";
-
+			
 			drawLibrary();
 			resetForm();
+		} else {
+			let error_string = "Error Submitting Book:\n";
+			save_errors.forEach(function(error){
+				error_string += `\n${error}`;
+			})
+			alert(error_string)
+			form_title.focus();
 		}
 	}
 }
@@ -222,8 +243,6 @@ function findInLibrary(title) {
 	return -1;
 }
 
-
-
 function generateColor() {
 	// generates and returns a random color within an acceptable range for book background colors
 	let r = 200;
@@ -238,6 +257,9 @@ function generateColor() {
 
 	return `rgb(${r}, ${g}, ${b})`
 }
+
+
+// The Following Runs on Page Load...
 
 loadLibrary();
 drawLibrary();
