@@ -84,7 +84,6 @@ header h1 {
     justify-content: center;
     flex-wrap: wrap;
     min-height: 100%;
-    padding-bottom: 0;
 }
 
 
@@ -100,7 +99,7 @@ header h1 {
     min-height: 260px;
     margin: 0 .5em 1em .5em;
     position: relative;
-    box-shadow: 0 7px 10px #777;
+    box-shadow: 0 7px 15px #444;
 }
 
 .book h2 {
@@ -168,8 +167,14 @@ h4 {
     background-color: rgba(128, 128, 128, .25);
     font-size: 1em;
     border: dashed 5px;
-    opacity: .75;
     box-shadow: none;
+    transition: .25s;
+}
+
+#add-book:hover{
+    background-color: rgba(128,128,128,1);
+    box-shadow: 0 3px 6px #777;
+    border: solid 5px;
 }
 
 #add-book-button {
@@ -239,7 +244,7 @@ h4 {
 
 label {
     color: white;
-    opacity: 50%;
+    opacity: 80%;
     font-size: .75em;
     display: block;
     text-align: left;
