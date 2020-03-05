@@ -1,9 +1,6 @@
 // TO DO 
 /*
 
-    * Create/Hide Book Operators on hover
-        * Destroy Book Button
-	    * Mark Book Read Button
 	* Persistence (local? firebase?)
 	* Make Look Prettier
 	* Shrink Book Titles to available space
@@ -224,6 +221,8 @@ function findInLibrary(title) {
 	}
 	return -1;
 }
+
+
 
 function generateColor() {
 	// generates and returns a random color within an acceptable range for book background colors
