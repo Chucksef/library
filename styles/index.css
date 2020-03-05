@@ -183,7 +183,7 @@ h4 {
 
 .form-button {
     border: solid 1px rgba(255,255,255, .5);
-    background-color: rgba(255, 255, 255, 0);
+    background: none;
     color: white;
     width: 50%;
     margin: 3px 0;
@@ -191,6 +191,10 @@ h4 {
     width: 100%;
     height: 2.5em;
     flex: 1;
+}
+
+.form-button:hover {
+    background: rgba(255, 255, 255, .25);
 }
 
 .tools {
@@ -204,10 +208,9 @@ h4 {
 
 .btn {
     background: none;
-    border-radius: 3px;
     border: 1px solid white;
     width: 45%;
-    padding: 5px;
+    padding: 10px;
     margin-top: 1em;
     color: white;
 }

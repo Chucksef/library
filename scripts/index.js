@@ -173,9 +173,15 @@ function saveBook() {
 
 function generateColor() {
 	// generates and returns a random color within an acceptable range for book background colors
-	let r = (Math.floor(Math.random() * 100))+75;
-	let g = (Math.floor(Math.random() * 100))+75;
-	let b = (Math.floor(Math.random() * 100))+75;
+	let r = 200;
+	let g = 200;
+	let b = 200;
+
+	while (r+g+b > 500) {
+		r = (Math.floor(Math.random() * 210));
+		g = (Math.floor(Math.random() * 210));
+		b = (Math.floor(Math.random() * 210));
+	}
 
 	return `rgb(${r}, ${g}, ${b})`
 }
