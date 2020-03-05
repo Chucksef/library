@@ -14,9 +14,6 @@
 
 // global variables go here
 var myLibrary = [];
-document.querySelector("#add-book").addEventListener("click", showBookForm);
-document.querySelector("#save-book").addEventListener("click", saveBook);
-document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 let library = document.querySelector("#library");
 let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
@@ -25,8 +22,13 @@ let form_author = document.querySelector("#book-author");
 let form_date = document.querySelector("#book-date");
 let form_radios = document.getElementsByName("book-status");
 
+// event listeners
+add_button.addEventListener("click", showBookForm);
+document.querySelector("#save-book").addEventListener("click", saveBook);
+document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 
-// CLASSES
+
+// CLASSES //
 
 class Book {
 	constructor(title, author, date, status, color=generateColor()) {
@@ -55,6 +57,13 @@ class Book {
 			resetForm();
 		}
 	}
+}
+
+
+// FUNCTIONS //
+
+function loadLibrary() {
+
 }
 
 function drawBooks() {
@@ -145,3 +154,7 @@ function generateColor() {
 
 	return `rgb(${r}, ${g}, ${b})`
 }
+
+loadLibrary();
+drawBooks();
+resetForm();
