@@ -129,7 +129,7 @@ function drawLibrary() {
 	read_book_buttons.forEach(function(button) {
 		button.addEventListener("click", function(e){
 			// get title of parent element's h2 tag
-			let tmp_title = button.parentNode.parentNode.childNodes[1].innerHTML;
+			let tmp_title = button.parentNode.parentNode.getElementsByTagName("h2")[0].innerHTML;
 			
 			// get index of element in myLibrary array
 			let tmp_index = findInLibrary(tmp_title)
@@ -142,7 +142,7 @@ function drawLibrary() {
 	remove_book_buttons.forEach(function(button) {
 		button.addEventListener("click", function(e){
 			// find title of parent element's h2 tag
-			let tmp_title = button.parentNode.parentNode.childNodes[1].innerHTML;
+			let tmp_title = button.parentNode.parentNode.getElementsByTagName("h2")[0].innerHTML;
 			
 			// get index of element in myLibrary array
 			let tmp_index = findInLibrary(tmp_title)
