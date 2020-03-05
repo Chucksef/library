@@ -95,6 +95,10 @@ function drawLibrary() {
 		// ... and draw each book in the array
 		book_form.insertAdjacentHTML("beforebegin", `
 			<div class="book removable" style="background-color: ${current_book.color};">
+				<div class="tools">
+					<button class="btn read-book">Read?</button>
+					<button class="btn remove-book">Remove!</button>
+				</div>
 				<h2>${current_book.title}</h2>
 				<hr>
 				<p class="label">Author</p>
@@ -103,10 +107,6 @@ function drawLibrary() {
 				<p class="detail">${current_book.date}</p>
 				<p class="label">Status:</p>
 				<p class="detail">${current_book.status}</p>
-				<div class="tools">
-					<button class="btn read-book">Read?</button>
-					<button class="btn remove-book">Remove!</button>
-				</div>
 			</div>
 		`)
 	}
