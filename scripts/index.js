@@ -86,8 +86,8 @@ function drawBooks() {
 				<p class="label">Status:</p>
 				<p class="detail">${current_book.status}</p>
 				<div class="tools">
-					<button class="btn read-book">Read!</button>
-					<button class="btn remove-book">Remove</button>
+					<button class="btn read-book">Read?</button>
+					<button class="btn remove-book">Remove!</button>
 				</div>
 			</div>
 		`)
@@ -103,6 +103,30 @@ function drawBooks() {
 			toggleTools(e.target);
 		});
 	})
+
+	// get all buttons
+	read_book_buttons = document.querySelectorAll(".read-book");
+	remove_book_buttons = document.querySelectorAll(".remove-book");
+	read_book_buttons.forEach(function(button) {
+		button.addEventListener("click", function(e){
+			let tmp_title = button.parentNode.parentNode.childNodes[1].innerHTML;
+			
+			// delete entry in array
+			toggleRead(tmp_title)
+			drawBooks();
+		})
+	})
+	remove_book_buttons.forEach(function(button) {
+		button.addEventListener("click", function(e){
+			// find title of parent element's h2 tag
+			let tmp_title = button.parentNode.parentNode.childNodes[1].innerHTML;
+			
+			// delete entry in array
+			deleteBookFromArray(tmp_title)
+			drawBooks();
+		})
+	})
+
 
 }
 
@@ -120,11 +144,34 @@ function toggleTools(book) {
 function clearBooks() {
 	let removables = document.querySelectorAll(".removable");
 	removables.forEach(function(book){
-		removeBook(book);
+		removeBookFromLibrary(book);
 	})
 }
 
-function removeBook(book) {
+function deleteBookFromArray(title){
+	// iterate over array and remove item with matching title
+	for(let i=0; i<myLibrary.length; i++){
+		if (myLibrary[i].title == title) {
+			let removed = myLibrary.splice(i, 1);
+			break;
+		}
+	}
+}
+
+function toggleRead(title){
+	// iterate over array and toggle read status
+	for(let i=0; i<myLibrary.length; i++){
+		if (myLibrary[i].title == title) {
+			if (myLibrary[i].status == "Read") {
+				myLibrary[i].status = "Unread";
+			} else {
+				myLibrary[i].status = "Read";
+			}
+		}
+	}
+}
+
+function removeBookFromLibrary(book) {
 	library.removeChild(book);
 }
 
