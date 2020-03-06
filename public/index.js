@@ -23,10 +23,6 @@ add_button.addEventListener("click", showBookForm);
 document.querySelector("#save-book").addEventListener("click", saveBook);
 document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 
-// FIREBASE STUFF GOES HERE! //
-
-// get db reference
-
 
 // CLASSES //
 
@@ -63,7 +59,16 @@ class Book {
 		}
 
 		if (save_errors.length == 0) {
+			db.collection('myLibrary').add({
+				title: this.title,
+				author: this.author,
+				date: this.date,
+				color: this.color,
+				status: this.status
+			})
+			
 			myLibrary.push(this);
+
 			book_form.style.display = "none";
 			add_button.style.display = "block";
 			
@@ -83,7 +88,12 @@ class Book {
 // FUNCTIONS //
 
 function loadLibrary() {
-
+	db.collection('myLibrary').get().then((snapshot) => {
+	snapshot.docs.forEach(doc => {
+		myLibrary.push(doc.data());
+	})
+	drawLibrary();
+})
 }
 
 function drawLibrary() {
