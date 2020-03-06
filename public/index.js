@@ -24,6 +24,10 @@ add_button.addEventListener("click", showBookForm);
 document.querySelector("#save-book").addEventListener("click", saveBook);
 document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 
+// FIREBASE STUFF GOES HERE! //
+
+// get db reference
+
 
 // CLASSES //
 
