@@ -1,7 +1,6 @@
 // TO DO 
 /*
 
-	* Persistence (local? firebase?)
 	* Make Look Prettier
 	* Shrink Book Titles to available space
 
