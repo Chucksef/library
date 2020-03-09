@@ -27,12 +27,13 @@ document.querySelector("#cancel-save").addEventListener("click", cancelSave);
 // CLASSES //
 
 class Book {
-	constructor(title, author, date, status, color=generateColor()) {
+	constructor(title, author, date, status, color_primary=generateColor()) {
 		this.title = title.trim();
 		this.author = author.trim();
 		this.date = date.trim();
 		this.status = status;
-		this.color = color;
+		this.color_primary = color_primary;
+		this.color_secondary = generateColor(color_primary);
 	}
 
 	save() {
@@ -64,21 +65,26 @@ class Book {
 				title: this.title,
 				author: this.author,
 				date: this.date,
-				color: this.color,
+				color_primary: this.color_primary,
+				color_secondary: this.color_secondary,
 				status: this.status
 			})
 
 			// capture the new book's ID by querying the new title
-			let new_ID = db.collection('myLibrary').where('title', '==', 'this.title');
-
-			// add the new book to the array
-			myLibrary[new_ID] = this;
-
-			book_form.style.display = "none";
-			add_button.style.display = "block";
-			
-			drawLibrary();
-			resetForm();
+			let new_book = this;
+			db.collection('myLibrary').where('title', '==', `${this.title}`)
+				.get()
+				.then(function(snapshot) {
+					snapshot.forEach(function(doc){
+						// add the document to the array
+						myLibrary[doc.id] = new_book;
+						book_form.style.display = "none";
+						add_button.style.display = "block";
+						
+						resetForm();
+						drawLibrary();
+					})
+				});	
 		} else {
 			let error_string = "Error Submitting Book:\n";
 			save_errors.forEach(function(error){
@@ -96,8 +102,8 @@ function loadLibrary() {
 	db.collection('myLibrary').get().then((snapshot) => {
 		snapshot.docs.forEach(doc => {
 			myLibrary[doc.id] = doc.data();
+			drawLibrary();
 		})
-		drawLibrary();
 	})
 }
 
@@ -112,10 +118,10 @@ function drawLibrary() {
 		
 		// ... and draw each book in the array
 		book_form.insertAdjacentHTML("beforebegin", `
-			<div id="${key}" class="book removable" style="background-color: ${current_book.color};">
-				<div class="tools">
-					<button class="btn read-book"><i class="material-icons">check_box</i></button>
-					<button class="btn remove-book"><i class="material-icons">delete_forever</i></button>
+			<div id="${key}" class="book removable" style="background-color: ${current_book.color_primary};">
+				<div class="tools" style="border: 3px solid ${current_book.color_secondary}">
+					<button class="btn read-book" style="background-color: ${current_book.color_secondary}"><i class="material-icons">check_box</i></button>
+					<button class="btn remove-book" style="background-color: ${current_book.color_secondary}"><i class="material-icons">delete_forever</i></button>
 				</div>
 				<h2>${current_book.title}</h2>
 				<hr>
@@ -219,8 +225,10 @@ function showBookForm() {
 	if(getComputedStyle(book_form).display == "block") {
 		alert("there's a new book");
 	} else {
-		new_color = generateColor();
-		book_form.style.backgroundColor = new_color;
+		new_primary = generateColor();
+		new_secondary = generateColor(new_primary);
+		book_form.style.backgroundColor = new_primary;
+		book_form.style.border = `3px solid ${new_secondary}`;
 		book_form.style.display = "block";
 		add_button.style.display = "none";
 		form_title.focus();
@@ -266,19 +274,44 @@ function findInLibrary(title) {
 	return -1;
 }
 
-function generateColor() {
-	// generates and returns a random color within an acceptable range for book background colors
-	let r = 200;
-	let g = 200;
-	let b = 200;
+function generateColor(primary=null) {
 
-	while (r+g+b > 500) {
-		r = (Math.floor(Math.random() * 210));
-		g = (Math.floor(Math.random() * 210));
-		b = (Math.floor(Math.random() * 210));
+	if (primary == null){
+		// generates and returns a random color_primary within an acceptable range for book background color_primarys
+		let r = (Math.floor(Math.random() * 250));
+		let g = (Math.floor(Math.random() * 250));
+		let b = (Math.floor(Math.random() * 250));
+
+		let dom = Math.max(r, g, b);
+		
+		let r_ratio = r/dom;
+		let g_ratio = g/dom;
+		let b_ratio = b/dom;
+
+		r = Math.floor(25 + (r_ratio * 60));
+		g = Math.floor(25 + (g_ratio * 60));
+		b = Math.floor(25 + (b_ratio * 60));
+
+		return `rgb(${r}, ${g}, ${b})`
+
+	} else {
+		let rgb = primary.substring(4,primary.length-1).split(", ");
+		let r = rgb[0];
+		let g = rgb[1];
+		let b = rgb[2];
+
+		let dom = Math.max(r,g,b);
+
+		let r_ratio = r/dom;
+		let g_ratio = g/dom;
+		let b_ratio = b/dom;
+
+		r = (r_ratio * 255);
+		g = (g_ratio * 255);
+		b = (b_ratio * 255);
+
+		return `rgb(${r}, ${g}, ${b})`
 	}
-
-	return `rgb(${r}, ${g}, ${b})`
 }
 
 
