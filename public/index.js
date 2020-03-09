@@ -114,8 +114,8 @@ function drawLibrary() {
 		book_form.insertAdjacentHTML("beforebegin", `
 			<div id="${key}" class="book removable" style="background-color: ${current_book.color};">
 				<div class="tools">
-					<button class="btn read-book">Read?</button>
-					<button class="btn remove-book">Remove!</button>
+					<button class="btn read-book"><i class="material-icons">check_box</i></button>
+					<button class="btn remove-book"><i class="material-icons">delete_forever</i></button>
 				</div>
 				<h2>${current_book.title}</h2>
 				<hr>
