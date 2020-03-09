@@ -143,13 +143,9 @@ function drawLibrary() {
 		button.addEventListener("click", function(e){
 			// get id
 			let book_ID = button.parentNode.parentNode.id;
-			alert(book_ID)
-			
-			// get index of element in myLibrary array
-			let tmp_index = findInLibrary(book_ID)
 
 			// toggle read status or book in myLibrary array
-			toggleRead(tmp_index);
+			toggleRead(book_ID);
 			drawLibrary();
 		})
 	})
@@ -192,16 +188,23 @@ function deleteBook(book_ID){
 	// iterate over array and remove item with matching title
 	delete myLibrary[book_ID]
 	db.collection("myLibrary").doc(book_ID).delete();
-
-	// THIS IS WHERE I LEFT OFF!!! 
 }
 
-function toggleRead(index){
+function toggleRead(book_ID){
 	// check if read status is "Read"
-	if (myLibrary[index].status == "Read") {
-		myLibrary[index].status = "Unread";
+
+	status = myLibrary[book_ID].status;
+
+	if (status == "Read") {
+		db.collection("myLibrary").doc(book_ID).update({
+			status: "Unread"
+		})
+		myLibrary[book_ID].status = "Unread";
 	} else {
-		myLibrary[index].status = "Read";
+		db.collection("myLibrary").doc(book_ID).update({
+			status: "Read"
+		})
+		myLibrary[book_ID].status = "Read";
 	}
 }
 
