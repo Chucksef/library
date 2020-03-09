@@ -9,7 +9,7 @@
 
 
 // global variables go here
-var myLibrary = [];
+let myLibrary = {};
 let library = document.querySelector("#library");
 let add_button = document.querySelector("#add-book");
 let book_form = document.querySelector("#book-form");
@@ -89,11 +89,11 @@ class Book {
 
 function loadLibrary() {
 	db.collection('myLibrary').get().then((snapshot) => {
-	snapshot.docs.forEach(doc => {
-		myLibrary.push(doc.data());
+		snapshot.docs.forEach(doc => {
+			myLibrary[doc.id] = doc.data();
+		})
+		drawLibrary();
 	})
-	drawLibrary();
-})
 }
 
 function drawLibrary() {
@@ -102,12 +102,12 @@ function drawLibrary() {
 	clearBooks();
 
 	// iterate over myLibrary array...
-	for (i=0; i<myLibrary.length; i++){
-		current_book = myLibrary[i];
+	for (key in myLibrary){
+		current_book = myLibrary[key];
 		
 		// ... and draw each book in the array
 		book_form.insertAdjacentHTML("beforebegin", `
-			<div class="book removable" style="background-color: ${current_book.color};">
+			<div id="${key}" class="book removable" style="background-color: ${current_book.color};">
 				<div class="tools">
 					<button class="btn read-book">Read?</button>
 					<button class="btn remove-book">Remove!</button>
