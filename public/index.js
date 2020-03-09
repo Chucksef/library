@@ -141,11 +141,12 @@ function drawLibrary() {
 	
 	read_book_buttons.forEach(function(button) {
 		button.addEventListener("click", function(e){
-			// get title of parent element's h2 tag
-			let tmp_title = button.parentNode.parentNode.getElementsByTagName("h2")[0].innerHTML;
+			// get id
+			let book_ID = button.parentNode.parentNode.id;
+			alert(book_ID)
 			
 			// get index of element in myLibrary array
-			let tmp_index = findInLibrary(tmp_title)
+			let tmp_index = findInLibrary(book_ID)
 
 			// toggle read status or book in myLibrary array
 			toggleRead(tmp_index);
@@ -155,13 +156,13 @@ function drawLibrary() {
 	remove_book_buttons.forEach(function(button) {
 		button.addEventListener("click", function(e){
 			// find title of parent element's h2 tag
-			let tmp_title = button.parentNode.parentNode.getElementsByTagName("h2")[0].innerHTML;
+			let book_ID = button.parentNode.parentNode.id;
 			
 			// get index of element in myLibrary array
-			let tmp_index = findInLibrary(tmp_title)
+			let tmp_index = findInLibrary(book_ID)
 			
 			// delete entry in array
-			deleteBookFromArray(tmp_index)
+			deleteBook(book_ID)
 			drawLibrary();
 		})
 	})
@@ -187,9 +188,12 @@ function clearBooks() {
 	})
 }
 
-function deleteBookFromArray(index){
+function deleteBook(book_ID){
 	// iterate over array and remove item with matching title
-	let rem = myLibrary.splice(index, 1);
+	delete myLibrary[book_ID]
+	db.collection("myLibrary").doc(book_ID).delete();
+
+	// THIS IS WHERE I LEFT OFF!!! 
 }
 
 function toggleRead(index){
