@@ -59,6 +59,7 @@ class Book {
 		}
 
 		if (save_errors.length == 0) {
+			// add the new book to fire store
 			db.collection('myLibrary').add({
 				title: this.title,
 				author: this.author,
@@ -66,8 +67,12 @@ class Book {
 				color: this.color,
 				status: this.status
 			})
-			
-			myLibrary.push(this);
+
+			// capture the new book's ID by querying the new title
+			let new_ID = db.collection('myLibrary').where('title', '==', 'this.title');
+
+			// add the new book to the array
+			myLibrary[new_ID] = this;
 
 			book_form.style.display = "none";
 			add_button.style.display = "block";
@@ -162,8 +167,6 @@ function drawLibrary() {
 			drawLibrary();
 		})
 	})
-
-
 }
 
 function toggleTools(book) {
